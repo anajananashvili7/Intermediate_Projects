@@ -1,7 +1,7 @@
 class BankAccount:
     def __init__(self, pin, balance=0):
-        self.pin = pin  # PIN code
-        self.balance = balance  # initial balance
+        self.pin = pin  
+        self.balance = balance 
 
     def check_balance(self):
         return self.balance
@@ -21,16 +21,16 @@ class BankAccount:
 def atm_system():
     print("Welcome to the ATM")
     
-    # Example pin and account balance
+    
     user_account = BankAccount(pin="1234", balance=1000)
     
-    # PIN verification
+    
     pin_input = input("Please enter your PIN: ")
     if pin_input != user_account.pin:
         print("Incorrect PIN. Exiting...")
         return
 
-    # Menu loop
+    
     while True:
         print("\nATM Menu:")
         print("1. Check Balance")

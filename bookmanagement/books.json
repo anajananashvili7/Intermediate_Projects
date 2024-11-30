@@ -8,5 +8,90 @@
         "title": "1984",
         "author": "George Orwell",
         "published_year": "1949"
+    },
+    {
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "published_year": "1960"
+    },
+    {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "published_year": "1813"
+    },
+    {
+        "title": "The Catcher in the Rye",
+        "author": "J.D. Salinger",
+        "published_year": "1951"
+    },
+    {
+        "title": "Moby-Dick",
+        "author": "Herman Melville",
+        "published_year": "1851"
+    },
+    {
+        "title": "War and Peace",
+        "author": "Leo Tolstoy",
+        "published_year": "1869"
+    },
+    {
+        "title": "The Odyssey",
+        "author": "Homer",
+        "published_year": "8th Century BC"
+    },
+    {
+        "title": "The Brothers Karamazov",
+        "author": "Fyodor Dostoevsky",
+        "published_year": "1880"
+    },
+    {
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "published_year": "1932"
+    },
+    {
+        "title": "Wuthering Heights",
+        "author": "Emily Bront\u0413\u00ab",
+        "published_year": "1847"
+    },
+    {
+        "title": "Crime and Punishment",
+        "author": "Fyodor Dostoevsky",
+        "published_year": "1866"
+    },
+    {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "published_year": "1937"
+    },
+    {
+        "title": "Anna Karenina",
+        "author": "Leo Tolstoy",
+        "published_year": "1878"
+    },
+    {
+        "title": "Les Mis\u0413\u00a9rables",
+        "author": "Victor Hugo",
+        "published_year": "1862"
+    },
+    {
+        "title": "Don Quixote",
+        "author": "Miguel de Cervantes",
+        "published_year": "1605"
+    },
+    {
+        "title": "The Divine Comedy",
+        "author": "Dante Alighieri",
+        "published_year": "1320"
+    },
+    {
+        "title": "The Adventures of Huckleberry Finn",
+        "author": "Mark Twain",
+        "published_year": "1884"
+    },
+    {
+        "title": "Great Expectations",
+        "author": "Charles Dickens",
+        "published_year": "1861"
     }
 ]

@@ -1,93 +1,88 @@
 import json
 import os
 
+# File to store book data
+BOOK_FILE = 'books.json'
 
-class BookManager:
-    def __init__(self, json_file="books.json"):
-        self.json_file = json_file
-        self.books = self.load_books()
+def load_books():
+    """Load books from the JSON file."""
+    if os.path.exists(BOOK_FILE):
+        with open(BOOK_FILE, 'r') as file:
+            return json.load(file)
+    return []
 
-    def load_books(self):
-        """Load books from the JSON file."""
-        if os.path.exists(self.json_file):
-            with open(self.json_file, "r") as file:
-                return json.load(file)
-        return []
+def save_books(books):
+    """Save books to the JSON file."""
+    with open(BOOK_FILE, 'w') as file:
+        json.dump(books, file, indent=4)
 
-    def save_books(self):
-        """Save books to the JSON file."""
-        with open(self.json_file, "w") as file:
-            json.dump(self.books, file, indent=4)
+def display_books(books):
+    """Display all books."""
+    if not books:
+        print("No books in the library.")
+        return
+    print("\nLibrary Books:")
+    for idx, book in enumerate(books, start=1):
+        print(f"{idx}. {book['title']} by {book['author']} (Published: {book['published_year']})")
 
-    def display_books(self):
-        """Display all books."""
-        if not self.books:
-            print("No books available.")
-        else:
-            print("\nList of Books:")
-            for idx, book in enumerate(self.books, start=1):
-                print(f"{idx}. {book['title']} by {book['author']} ({book['published_year']})")
+def search_book(books):
+    """Search for a book by title."""
+    title = input("Enter the title of the book to search: ").strip().lower()
+    found_books = [book for book in books if title in book['title'].lower()]
+    if not found_books:
+        print(f"No books found with title containing '{title}'.")
+    else:
+        print("\nSearch Results:")
+        for book in found_books:
+            print(f"{book['title']} by {book['author']} (Published: {book['published_year']})")
 
-    def add_book(self, title, author, published_year):
-        """Add a new book."""
-        new_book = {"title": title, "author": author, "published_year": published_year}
-        self.books.append(new_book)
-        self.save_books()
-        print(f"Book added: {title} by {author} ({published_year})")
+def add_book(books):
+    """Add a new book to the library."""
+    title = input("Enter the title of the book: ").strip()
+    author = input("Enter the author of the book: ").strip()
+    published_year = input("Enter the published year of the book: ").strip()
+    
+    books.append({"title": title, "author": author, "published_year": published_year})
+    print(f"Book '{title}' added successfully!")
+    save_books(books)
 
-    def delete_book(self, title):
-        """Delete a book by title."""
-        for book in self.books:
-            if book['title'].lower() == title.lower():
-                self.books.remove(book)
-                self.save_books()
-                print(f"Book deleted: {book['title']}")
-                return
-        print(f"No book found with title '{title}'.")
-
-    def search_books(self, query):
-        """Search books by title or author."""
-        results = [book for book in self.books if query.lower() in book['title'].lower() or query.lower() in book['author'].lower()]
-        if results:
-            print("\nSearch Results:")
-            for idx, book in enumerate(results, start=1):
-                print(f"{idx}. {book['title']} by {book['author']} ({book['published_year']})")
-        else:
-            print(f"No books found matching '{query}'.")
-
+def delete_book(books):
+    """Delete a book by title."""
+    title = input("Enter the title of the book to delete: ").strip().lower()
+    for book in books:
+        if book['title'].lower() == title:
+            books.remove(book)
+            print(f"Book '{book['title']}' deleted successfully!")
+            save_books(books)
+            return
+    print(f"No book found with title '{title}'.")
 
 def main():
-    manager = BookManager()
-
+    """Main program loop."""
+    books = load_books()
     while True:
-        print("\n--- Book Management Menu ---")
-        print("1. Display All Books")
-        print("2. Add a Book")
-        print("3. Delete a Book")
-        print("4. Search Books")
+        print("\nLibrary Menu:")
+        print("1. Display all books")
+        print("2. Search for a book")
+        print("3. Add a new book")
+        print("4. Delete a book")
         print("5. Exit")
-
-        choice = input("Enter your choice: ")
-
+        
+        choice = input("Enter your choice (1-5): ").strip()
+        
         if choice == '1':
-            manager.display_books()
+            display_books(books)
         elif choice == '2':
-            title = input("Enter the book title: ")
-            author = input("Enter the author: ")
-            published_year = input("Enter the published year: ")
-            manager.add_book(title, author, published_year)
+            search_book(books)
         elif choice == '3':
-            title = input("Enter the title of the book to delete: ")
-            manager.delete_book(title)
+            add_book(books)
         elif choice == '4':
-            query = input("Enter a title or author to search: ")
-            manager.search_books(query)
+            delete_book(books)
         elif choice == '5':
             print("Exiting the program. Goodbye!")
             break
         else:
-            print("Invalid choice. Please try again.")
-
+            print("Invalid choice. Please enter a number between 1 and 5.")
 
 if __name__ == "__main__":
     main()

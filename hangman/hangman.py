@@ -2,8 +2,75 @@ import os
 import json
 import random
 
+# ASCII art for Hangman stages
+HANGMAN_STAGES = [
+    """
+       -----
+       |   |
+       O   |
+      /|\\  |
+      / \\  |
+           |
+    =========
+    """,
+    """
+       -----
+       |   |
+       O   |
+      /|\\  |
+      /    |
+           |
+    =========
+    """,
+    """
+       -----
+       |   |
+       O   |
+      /|\\  |
+           |
+           |
+    =========
+    """,
+    """
+       -----
+       |   |
+       O   |
+      /|   |
+           |
+           |
+    =========
+    """,
+    """
+       -----
+       |   |
+       O   |
+       |   |
+           |
+           |
+    =========
+    """,
+    """
+       -----
+       |   |
+       O   |
+           |
+           |
+           |
+    =========
+    """,
+    """
+       -----
+       |   |
+           |
+           |
+           |
+           |
+    =========
+    """
+]
+
 def load_words():
-    # Print current directory to check where the script is running from
+    """Load words from a JSON file."""
     print("Current working directory:", os.getcwd())
 
     try:
@@ -32,7 +99,11 @@ def hangman():
     print("You have 6 attempts to guess the word.")
 
     while attempts > 0 and '_' in guessed_word:
-        print("\nCurrent word:", ' '.join(guessed_word))
+        # Display the current hangman stage
+        print(HANGMAN_STAGES[6 - attempts])
+
+        # Display the current word and guessed letters
+        print("Current word:", ' '.join(guessed_word))
         print(f"Guessed letters: {', '.join(guessed_letters) if guessed_letters else 'None'}")
         print(f"Attempts left: {attempts}")
 
@@ -59,9 +130,10 @@ def hangman():
 
     # Game result
     if '_' not in guessed_word:
-        print(f"\nCongratulations! You guessed the word: {word}")
+        print("\nCongratulations! You guessed the word:", word)
     else:
-        print(f"\nGame Over! The word was: {word}")
+        print(HANGMAN_STAGES[0])  # Display the full hangman
+        print("\nGame Over! The word was:", word)
 
 if __name__ == "__main__":
     hangman()
